@@ -5,4 +5,4 @@ playwright-report/
 allure-report/
 allure-results/
 .vscode/
-.DS_Store
+.DS_Store.zshrc

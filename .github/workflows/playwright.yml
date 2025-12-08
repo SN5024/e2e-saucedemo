@@ -139,6 +139,11 @@ jobs:
           cp -r merged-html/chrome/* reports/playwright-report/
           cp -r merged-html/safari/* reports/playwright-report/
 
+      # Copy landing index.html to reports/
+      - name: Copy landing page
+        run: |
+          cp .github/index.html reports/index.html
+
       # Deploy All reports to GitHub Pages
       - name: Deploy All Reports to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

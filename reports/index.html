@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Reports</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .report-links {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+    .report-card {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+    .report-card:hover {
+      transform: translateY(-5px);
+    }
+    .report-card a {
+      text-decoration: none;
+      color: #0070f3;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>E2E Test Reports</h1>
+  <div class="report-links">
+    <div class="report-card">
+      <a href="./allure-report/index.html" target="_blank">Allure Report</a>
+    </div>
+    <div class="report-card">
+      <a href="./playwright-report/index.html" target="_blank">Playwright HTML Report</a>
+    </div>
+  </div>
+</body>
+</html>

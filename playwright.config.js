@@ -13,10 +13,12 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      outputDir: 'test-results/chromium', // separate folder for Chrome
     },
     {
       name: 'webkit', // Safari
       use: { ...devices['Desktop Safari'] },
+      outputDir: 'test-results/webkit', // separate folder for Safari
     },
   ],
 });

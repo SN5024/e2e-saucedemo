@@ -1,13 +1,13 @@
-// playwright.config.js
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   timeout: 30000,
   use: {
     headless: true,
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
     baseURL: process.env.BASE_URL,
+    // Force screenshots/videos for all runs so test-results folders exist
+    screenshot: 'on',
+    video: 'on',
   },
   projects: [
     {
@@ -17,10 +17,11 @@ export default defineConfig({
       reporter: [['html', { outputFolder: 'playwright-report/chromium', open: 'never' }]],
     },
     {
-      name: 'webkit', // Safari
+      name: 'webkit',
       use: { ...devices['Desktop Safari'] },
       outputDir: 'test-results/webkit',
       reporter: [['html', { outputFolder: 'playwright-report/webkit', open: 'never' }]],
     },
   ],
+
 });

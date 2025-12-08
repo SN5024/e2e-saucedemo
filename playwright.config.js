@@ -13,12 +13,14 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-      outputDir: 'test-results/chromium', // separate folder for Chrome
+      outputDir: 'test-results/chromium',
+      reporter: [['html', { outputFolder: 'playwright-report/chromium', open: 'never' }]],
     },
     {
       name: 'webkit', // Safari
       use: { ...devices['Desktop Safari'] },
-      outputDir: 'test-results/webkit', // separate folder for Safari
+      outputDir: 'test-results/webkit',
+      reporter: [['html', { outputFolder: 'playwright-report/webkit', open: 'never' }]],
     },
   ],
 });

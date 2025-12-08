@@ -42,4 +42,5 @@ jobs:
         path: |
           test-results/chromium
           test-results/webkit
-          playwright-report/
+          playwright-report/chromium
+          playwright-report/webkit

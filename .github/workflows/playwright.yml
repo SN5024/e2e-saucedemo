@@ -7,12 +7,13 @@ on:
     branches: [ main ]
 
 jobs:
-  chrome:
+  e2e:
     runs-on: ubuntu-latest
     env:
       BASE_URL: ${{ secrets.BASE_URL }}
       SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
       SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -21,6 +22,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+
+      # Cache node_modules
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      # Cache Playwright browsers
+      - name: Cache Playwright browsers
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Install dependencies
         run: npm ci
@@ -28,29 +43,27 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      # Run tests for Chrome
-      - name: Run Playwright tests (Chrome)
-        run: npx playwright test --project=chromium --reporter=allure-playwright,html
+      # Run all projects
+      - name: Run Playwright tests (All projects)
+        run: npx playwright test --reporter=allure-playwright,html
 
-      # Upload Allure results and HTML report
-      - name: Upload Allure results (Chrome)
+      # Upload artifacts
+      - name: Upload Allure results
         uses: actions/upload-artifact@v4
         with:
-          name: allure-results-chrome
+          name: allure-results
           path: allure-results
 
-      - name: Upload Playwright HTML report (Chrome)
+      - name: Upload Playwright HTML report
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-chrome
+          name: playwright-report
           path: playwright-report
 
-  safari:
+  deploy-reports:
     runs-on: ubuntu-latest
-    env:
-      BASE_URL: ${{ secrets.BASE_URL }}
-      SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-      SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
+    needs: [e2e]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -63,88 +76,53 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
-
-      # Run tests for Safari
-      - name: Run Playwright tests (Safari)
-        run: npx playwright test --project=webkit --reporter=allure-playwright,html
-
-      # Upload Allure results and HTML report
-      - name: Upload Allure results (Safari)
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results-safari
-          path: allure-results
-
-      - name: Upload Playwright HTML report (Safari)
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report-safari
-          path: playwright-report
-
-  merge-reports:
-    runs-on: ubuntu-latest
-    needs: [chrome, safari]
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm ci
-
-      # Download Allure results
-      - name: Download Allure results (Chrome)
+      # Download artifacts
+      - name: Download Allure results
         uses: actions/download-artifact@v4
         with:
-          name: allure-results-chrome
-          path: merged-allure/chrome
+          name: allure-results
+          path: reports/allure
 
-      - name: Download Allure results (Safari)
+      - name: Download Playwright HTML report
         uses: actions/download-artifact@v4
         with:
-          name: allure-results-safari
-          path: merged-allure/safari
-
-      # Download Playwright HTML reports
-      - name: Download Playwright report (Chrome)
-        uses: actions/download-artifact@v4
-        with:
-          name: playwright-report-chrome
-          path: merged-html/chrome
-
-      - name: Download Playwright report (Safari)
-        uses: actions/download-artifact@v4
-        with:
-          name: playwright-report-safari
-          path: merged-html/safari
+          name: playwright-report
+          path: reports/playwright
 
       # Merge Allure results and generate report
-      - name: Merge Allure results
+      - name: Generate Allure report
         run: |
           mkdir -p reports/allure-report
-          cp -r merged-allure/chrome/* reports/allure-report/
-          cp -r merged-allure/safari/* reports/allure-report/
+          cp -r reports/allure/* reports/allure-report/
           npx allure generate reports/allure-report --clean -o reports/allure-report
 
-      # Copy HTML reports under the same folder
-      - name: Merge Playwright HTML reports
+      # Ensure landing page exists and links both reports
+      - name: Create landing page
         run: |
-          mkdir -p reports/playwright-report
-          cp -r merged-html/chrome/* reports/playwright-report/
-          cp -r merged-html/safari/* reports/playwright-report/
+          TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+          echo "<!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset='utf-8'>
+            <title>E2E Test Reports</title>
+          </head>
+          <body>
+            <h1>E2E Test Reports</h1>
+            <p>Last run: $TIMESTAMP</p>
+            <ul>
+              <li><a href='allure-report/index.html'>Allure Report</a></li>
+              <li><a href='playwright/index.html'>Playwright HTML Report</a></li>
+            </ul>
+          </body>
+          </html>" > reports/index.html
 
-      # Copy landing index.html to reports/
-      - name: Copy landing page
+      # Copy Playwright report under reports/playwright
+      - name: Move Playwright HTML report
         run: |
-          cp .github/index.html reports/index.html
+          mkdir -p reports/playwright
+          cp -r reports/playwright/* reports/playwright/
 
-      # Deploy All reports to GitHub Pages
+      # Deploy all reports to GitHub Pages
       - name: Deploy All Reports to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

@@ -1,3 +1,6 @@
+// pages/LoginPage.js
+import { expect } from '@playwright/test';
+
 export class LoginPage {
     constructor(page, baseURL) {
         this.page = page;

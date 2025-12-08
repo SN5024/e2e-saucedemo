@@ -7,41 +7,102 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  test-chrome:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node-version: [20.x]
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 20.x
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Install Playwright browsers
-      run: npx playwright install --with-deps
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
 
-    - name: Run Playwright tests (HTML report)
-      run: npx playwright test --reporter=html
-      env:
-        BASE_URL: ${{ secrets.BASE_URL }}
-        SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-        SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
+      - name: Run Playwright tests (Chrome)
+        run: npx playwright test --project=chromium --reporter=html
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
 
-    - name: Upload Playwright Report
-      uses: actions/upload-artifact@v4
-      with:
-        name: playwright-report
-        path: playwright-report
-        if-no-files-found: warn
+      - name: Upload Chrome Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-chrome-report
+          path: playwright-report
 
-    - name: Upload Test Results
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: test-results
-        if-no-files-found: warn
+  test-safari:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests (Safari)
+        run: npx playwright test --project=webkit --reporter=html
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
+
+      - name: Upload Safari Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-safari-report
+          path: playwright-report
+
+  merge-and-deploy:
+    runs-on: ubuntu-latest
+    needs: [test-chrome, test-safari]
+    steps:
+      - uses: actions/checkout@v3
+
+      # Download Chrome report
+      - name: Download Chrome Report
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-chrome-report
+          path: report/chrome
+
+      # Download Safari report
+      - name: Download Safari Report
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-safari-report
+          path: report/safari
+
+      # Merge reports (simple approach: copy both into a single folder)
+      - name: Merge Reports
+        run: |
+          mkdir -p report/merged
+          cp -r report/chrome/* report/merged/
+          cp -r report/safari/* report/merged/
+
+      # Deploy merged report to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./report/merged

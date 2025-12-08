@@ -1,0 +1,18 @@
+stages:
+  - test #defines the CI stages; we only have test now.
+
+variables:
+  NODE_ENV: test #uses a ready-made Playwright Docker image with all browsers installed.
+
+test_playwright:
+  stage: test
+  image: mcr.microsoft.com/playwright:v1.44.0-focal
+  before_script: #installs dependencies from package-lock.json
+    - npm ci
+  script: #installs Playwright browsers & runs tests
+    - npx playwright install --with-deps
+    - npx playwright test
+  artifacts: #saves test-results/ so you can see screenshots, videos, and logs from failed tests
+    paths:
+      - test-results/
+    when: always

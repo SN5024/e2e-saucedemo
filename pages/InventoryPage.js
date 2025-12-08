@@ -9,7 +9,11 @@ export class InventoryPage {
     }
 
     async addProductToCartById(productId) {
-        const button = this.page.locator(`button[data-test="add-to-cart-${productId}"]`);
+        // SauceDemo uses data-test="add-to-cart-sauce-labs-backpack"
+        const selector = `[data-test="add-to-cart-${productId}"]`;
+        const button = this.page.locator(selector);
+        // Log to help debugging
+        console.log("Clicking:", selector);
         await button.click();
     }
 
@@ -23,6 +27,6 @@ export class InventoryPage {
     }
 
     async verifyProductAddedToCart(expectedCount) {
-        await expect(this.cartBadge).toHaveText(String(expectedCount));
+        await expect(this.cartBadge).toHaveText(String(expectedCount, { timeout: 3000 }));
     }
 }

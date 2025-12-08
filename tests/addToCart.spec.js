@@ -8,7 +8,7 @@ let context;
 let page;
 let inventoryPage;
 
-test.describe('Add Product to Cart Page', () => {
+test.describe.serial('Add Product to Cart Page', () => {
 
     test.beforeAll(async ({ browser }) => {
         // Create one context for all tests in this file

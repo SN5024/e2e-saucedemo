@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Playwright E2E Tests
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test-chrome:
+  chrome:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -27,20 +27,26 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests (Chrome)
-        run: npx playwright test --project=chromium --reporter=html
+      - name: Run Playwright tests on Chrome
+        run: npx playwright test --browser=chromium --reporter=html
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
 
-      - name: Upload Chrome Report
+      - name: Upload Chrome artifacts
         uses: actions/upload-artifact@v4
         with:
           name: playwright-chrome-report
           path: playwright-report
 
-  test-safari:
+      - name: Upload Allure results (Chrome)
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-chrome
+          path: allure-results
+
+  safari:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -60,49 +66,79 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests (Safari)
-        run: npx playwright test --project=webkit --reporter=html
+      - name: Run Playwright tests on Safari
+        run: npx playwright test --browser=webkit --reporter=html
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
 
-      - name: Upload Safari Report
+      - name: Upload Safari artifacts
         uses: actions/upload-artifact@v4
         with:
           name: playwright-safari-report
           path: playwright-report
 
-  merge-and-deploy:
-    runs-on: ubuntu-latest
-    needs: [test-chrome, test-safari]
-    steps:
-      - uses: actions/checkout@v3
+      - name: Upload Allure results (Safari)
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-safari
+          path: allure-results
 
-      # Download Chrome report
-      - name: Download Chrome Report
+  merge-reports:
+    runs-on: ubuntu-latest
+    needs: [chrome, safari]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download Chrome Playwright report
         uses: actions/download-artifact@v4
         with:
           name: playwright-chrome-report
           path: report/chrome
 
-      # Download Safari report
-      - name: Download Safari Report
+      - name: Download Safari Playwright report
         uses: actions/download-artifact@v4
         with:
           name: playwright-safari-report
           path: report/safari
 
-      # Merge reports (simple approach: copy both into a single folder)
-      - name: Merge Reports
-        run: |
-          mkdir -p report/merged
-          cp -r report/chrome/* report/merged/
-          cp -r report/safari/* report/merged/
+      - name: Download Allure results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results-chrome
+          path: allure-results/chrome
 
-      # Deploy merged report to GitHub Pages
-      - name: Deploy to GitHub Pages
+      - name: Download Allure results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results-safari
+          path: allure-results/safari
+
+      - name: Merge Allure results
+        run: |
+          mkdir -p allure-results/merged
+          cp -r allure-results/chrome/* allure-results/merged/
+          cp -r allure-results/safari/* allure-results/merged/
+          npx allure generate allure-results/merged --clean -o allure-report
+
+      - name: Deploy merged Playwright report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./report/merged
+          publish_dir: ./report
+
+      - name: Deploy merged Allure report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report

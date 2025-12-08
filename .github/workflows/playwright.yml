@@ -1,3 +1,11 @@
+#Caches node_modules and Playwright browsers to speed up runs.
+#Runs Chromium + Safari via projects defined in your Playwright config.
+#Uploads and downloads artifacts correctly.
+#Generates Allure report in reports/allure-report.
+#Copies Playwright HTML report to reports/playwright.
+#Creates a professional landing page (reports/index.html) linking both reports.
+#Deploys everything under reports/ to GitHub Pages.
+
 name: Playwright E2E Tests
 
 on:
@@ -43,8 +51,8 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      # Run all projects
-      - name: Run Playwright tests (All projects)
+      # Run all projects (Chromium + Webkit)
+      - name: Run Playwright tests
         run: npx playwright test --reporter=allure-playwright,html
 
       # Upload artifacts
@@ -76,27 +84,33 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Download artifacts
+      # Download Allure and Playwright artifacts
       - name: Download Allure results
         uses: actions/download-artifact@v4
         with:
           name: allure-results
-          path: reports/allure
+          path: merged-allure
 
       - name: Download Playwright HTML report
         uses: actions/download-artifact@v4
         with:
           name: playwright-report
-          path: reports/playwright
+          path: merged-html
 
-      # Merge Allure results and generate report
+      # Merge Allure results and generate HTML report
       - name: Generate Allure report
         run: |
           mkdir -p reports/allure-report
-          cp -r reports/allure/* reports/allure-report/
+          cp -r merged-allure/* reports/allure-report/
           npx allure generate reports/allure-report --clean -o reports/allure-report
 
-      # Ensure landing page exists and links both reports
+      # Merge Playwright HTML reports
+      - name: Merge Playwright HTML reports
+        run: |
+          mkdir -p reports/playwright
+          cp -r merged-html/* reports/playwright/
+
+      # Create landing page linking both reports
       - name: Create landing page
         run: |
           TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
@@ -115,12 +129,6 @@ jobs:
             </ul>
           </body>
           </html>" > reports/index.html
-
-      # Copy Playwright report under reports/playwright
-      - name: Move Playwright HTML report
-        run: |
-          mkdir -p reports/playwright
-          cp -r reports/playwright/* reports/playwright/
 
       # Deploy all reports to GitHub Pages
       - name: Deploy All Reports to GitHub Pages

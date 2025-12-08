@@ -28,18 +28,22 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
+      # Run tests for Chrome
       - name: Run Playwright tests (Chrome)
-        run: npx playwright test --project=chromium --reporter=allure-playwright
-        # 'allure-playwright' reporter generates allure-results
+        run: npx playwright test --project=chromium --reporter=allure-playwright,html
 
-      - name: List Allure results (Chrome)
-        run: ls -R allure-results || echo "No allure-results found"
-
+      # Upload Allure results and HTML report
       - name: Upload Allure results (Chrome)
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-chrome
           path: allure-results
+
+      - name: Upload Playwright HTML report (Chrome)
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-chrome
+          path: playwright-report
 
   safari:
     runs-on: ubuntu-latest
@@ -62,17 +66,22 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
+      # Run tests for Safari
       - name: Run Playwright tests (Safari)
-        run: npx playwright test --project=webkit --reporter=allure-playwright
+        run: npx playwright test --project=webkit --reporter=allure-playwright,html
 
-      - name: List Allure results (Safari)
-        run: ls -R allure-results || echo "No allure-results found"
-
+      # Upload Allure results and HTML report
       - name: Upload Allure results (Safari)
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-safari
           path: allure-results
+
+      - name: Upload Playwright HTML report (Safari)
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-safari
+          path: playwright-report
 
   merge-reports:
     runs-on: ubuntu-latest
@@ -102,20 +111,37 @@ jobs:
           name: allure-results-safari
           path: merged-allure/safari
 
-      - name: List downloaded artifacts
-        run: ls -R merged-allure
+      # Download Playwright HTML reports
+      - name: Download Playwright report (Chrome)
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-report-chrome
+          path: merged-html/chrome
+
+      - name: Download Playwright report (Safari)
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-report-safari
+          path: merged-html/safari
 
       # Merge Allure results and generate report
-      - name: Merge and generate Allure report
+      - name: Merge Allure results
         run: |
-          mkdir -p merged-allure/all
-          cp -r merged-allure/chrome/* merged-allure/all/ || true
-          cp -r merged-allure/safari/* merged-allure/all/ || true
-          npx allure generate merged-allure/all --clean -o allure-report
+          mkdir -p reports/allure-report
+          cp -r merged-allure/chrome/* reports/allure-report/
+          cp -r merged-allure/safari/* reports/allure-report/
+          npx allure generate reports/allure-report --clean -o reports/allure-report
 
-      # Deploy the merged report to GitHub Pages
-      - name: Deploy Allure report to GitHub Pages
+      # Copy HTML reports under the same folder
+      - name: Merge Playwright HTML reports
+        run: |
+          mkdir -p reports/playwright-report
+          cp -r merged-html/chrome/* reports/playwright-report/
+          cp -r merged-html/safari/* reports/playwright-report/
+
+      # Deploy All reports to GitHub Pages
+      - name: Deploy All Reports to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report
+          publish_dir: reports

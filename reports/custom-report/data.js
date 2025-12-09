@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadResults() {
   try {
-    const response = await fetch("/playwright/results.json");
+    // Dynamically calculate base URL
+    const base = window.location.pathname.replace(/\/custom-report\/.*$/, '/');
+
+    const response = await fetch(base + 'playwright/results.json');
     const data = await response.json();
 
     // Test Run Info
@@ -76,6 +79,11 @@ async function loadResults() {
 
   } catch (err) {
     console.error("Error loading results:", err);
+    const errorDiv = document.createElement("div");
+    errorDiv.style.color = "red";
+    errorDiv.style.fontWeight = "bold";
+    errorDiv.innerText = "Failed to load test results. Check the console for details.";
+    document.body.prepend(errorDiv);
   }
 }
 

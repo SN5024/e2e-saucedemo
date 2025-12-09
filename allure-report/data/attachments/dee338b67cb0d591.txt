@@ -1,0 +1,1 @@
+Clicking: [data-test="add-to-cart-sauce-labs-bike-light"]

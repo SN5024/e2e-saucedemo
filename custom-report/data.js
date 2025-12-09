@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadResults() {
   try {
-    const response = await fetch("/playwright/results.json");
+    const response = await fetch("../playwright/results.json");
     const data = await response.json();
 
     // Test Run Info
@@ -13,8 +13,7 @@ async function loadResults() {
     document.getElementById("start-time").innerText = startTime.toLocaleString();
     document.getElementById("end-time").innerText = endTime.toLocaleString();
 
-    const totalRuntimeMs = data.stats.duration;
-    const totalSeconds = Math.floor(totalRuntimeMs / 1000);
+    const totalSeconds = Math.floor(data.stats.duration / 1000);
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
     document.getElementById("total-runtime").innerText = `${minutes}m ${seconds}s`;

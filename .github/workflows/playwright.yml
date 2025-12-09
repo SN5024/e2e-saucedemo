@@ -102,18 +102,60 @@ jobs:
           cp -r reports/playwright-temp/* reports/playwright/
 
       # Create landing page linking for 3 reports
-      - name: Create landing page
+      - name: Create professional landing page
         run: |
           TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
           echo "<!DOCTYPE html>
-          <html>
+          <html lang='en'>
           <head>
-            <meta charset='utf-8'>
-            <title>E2E Test Reports</title>
+            <meta charset='UTF-8'>
+            <title>Landing Page - E2E Test Reports</title>
+            <style>
+              body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f6f8;
+                margin: 50px;
+                color: #2c3e50;
+              }
+              h1 {
+                color: #1abc9c;
+                font-size: 2.5em;
+                margin-bottom: 5px;
+              }
+              p.timestamp {
+                font-size: 0.95em;
+                color: #7f8c8d;
+                margin-bottom: 30px;
+              }
+              ul {
+                list-style: none;
+                padding: 0;
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap;
+              }
+              ul li {
+                margin: 10px 0;
+              }
+              ul li a {
+                text-decoration: none;
+                font-size: 1.1em;
+                padding: 12px 20px;
+                background: linear-gradient(135deg, #1abc9c, #16a085);
+                color: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                transition: transform 0.2s, box-shadow 0.2s;
+              }
+              ul li a:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+              }
+            </style>
           </head>
           <body>
-            <h1>E2E Test Reports</h1>
-            <p>Last run: $TIMESTAMP</p>
+            <h1>Landing Page - E2E Test Reports</h1>
+            <p class='timestamp'>Last run: $TIMESTAMP</p>
             <ul>
               <li><a href='custom-report/index.html'>Custom Report</a></li>
               <li><a href='allure-report/index.html'>Allure Report</a></li>

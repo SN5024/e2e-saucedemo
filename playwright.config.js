@@ -26,8 +26,9 @@ export default defineConfig({
 
   // --- Reporters ---
   reporter: [
-    ['list'], // optional: keep console output
-    ['json', { outputFile: 'reports/playwright/results.json' }]
+    ['list'], // console output
+    ['html', { outputFolder: 'playwright-report', open: 'never' }], // generates HTML report
+    ['json', { outputFile: 'reports/playwright/results.json' }] // optional, keep JSON
   ],
 
   expect: {

@@ -1,11 +1,3 @@
-#Caches node_modules and Playwright browsers to speed up runs.
-#Runs Chromium + Safari via projects defined in your Playwright config.
-#Uploads and downloads artifacts correctly.
-#Generates Allure report in reports/allure-report.
-#Copies Playwright HTML report to reports/playwright.
-#Creates a professional landing page (reports/index.html) linking both reports.
-#Deploys everything under reports/ to GitHub Pages.
-
 name: Playwright E2E Tests
 
 on:
@@ -110,7 +102,7 @@ jobs:
           mkdir -p reports/playwright
           cp -r merged-html/* reports/playwright/
 
-      # Create landing page linking both reports
+      # Create professional landing page linking both reports
       - name: Create landing page
         run: |
           TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
@@ -119,13 +111,22 @@ jobs:
           <head>
             <meta charset='utf-8'>
             <title>E2E Test Reports</title>
+            <style>
+              body { font-family: Arial, sans-serif; background-color: #f8f9fa; margin: 40px; }
+              h1 { color: #333; }
+              ul { list-style-type: none; padding: 0; }
+              li { margin: 10px 0; }
+              a { text-decoration: none; color: #1a73e8; font-weight: bold; }
+              a:hover { text-decoration: underline; }
+              p { color: #555; }
+            </style>
           </head>
           <body>
             <h1>E2E Test Reports</h1>
             <p>Last run: $TIMESTAMP</p>
             <ul>
-              <li><a href='allure-report/index.html'>Allure Report</a></li>
-              <li><a href='playwright/index.html'>Playwright HTML Report</a></li>
+              <li><a href='allure-report/index.html' target='_blank'>Allure Report</a></li>
+              <li><a href='playwright/index.html' target='_blank'>Playwright HTML Report</a></li>
             </ul>
           </body>
           </html>" > reports/index.html

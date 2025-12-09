@@ -1,15 +1,14 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
-
 dotenv.config(); // Load .env variables
 
 export default defineConfig({
   testDir: './tests',
 
   // --- Workers Optimized for Apple M2 Pro ---
-  workers: process.env.CI ? 4 : 6, 
+  workers: process.env.CI ? 4 : 6,
   timeout: 30_000,
-  fullyParallel: true, 
+  fullyParallel: true,
 
   use: {
     headless: true,
@@ -27,9 +26,8 @@ export default defineConfig({
 
   // --- Reporters ---
   reporter: [
-    ['list'], // console output
-    ['html', { open: 'never' }], 
-    ['allure-playwright', { outputFolder: 'allure-results' }] // <<--- ADD THIS
+    ['list'], // optional: keep console output
+    ['json', { outputFile: 'reports/playwright/results.json' }]
   ],
 
   expect: {

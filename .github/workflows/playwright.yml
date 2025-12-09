@@ -101,7 +101,7 @@ jobs:
           mkdir -p reports/playwright
           cp -r reports/playwright-temp/* reports/playwright/
 
-      # Create landing page linking both reports
+      # Create landing page linking for 3 reports
       - name: Create landing page
         run: |
           TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
@@ -115,6 +115,7 @@ jobs:
             <h1>E2E Test Reports</h1>
             <p>Last run: $TIMESTAMP</p>
             <ul>
+              <li><a href='custom-report/index.html'>Custom Report</a></li>
               <li><a href='allure-report/index.html'>Allure Report</a></li>
               <li><a href='playwright/index.html'>Playwright HTML Report</a></li>
             </ul>

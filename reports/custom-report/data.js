@@ -4,10 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadResults() {
   try {
-    // Dynamically calculate base URL
-    const base = window.location.pathname.replace(/\/custom-report\/.*$/, '/');
-
-    const response = await fetch(base + 'playwright/results.json');
+    const response = await fetch("../playwright/results.json");
     const data = await response.json();
 
     // Test Run Info
@@ -16,8 +13,7 @@ async function loadResults() {
     document.getElementById("start-time").innerText = startTime.toLocaleString();
     document.getElementById("end-time").innerText = endTime.toLocaleString();
 
-    const totalRuntimeMs = data.stats.duration;
-    const totalSeconds = Math.floor(totalRuntimeMs / 1000);
+    const totalSeconds = Math.floor(data.stats.duration / 1000);
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
     document.getElementById("total-runtime").innerText = `${minutes}m ${seconds}s`;
@@ -79,11 +75,6 @@ async function loadResults() {
 
   } catch (err) {
     console.error("Error loading results:", err);
-    const errorDiv = document.createElement("div");
-    errorDiv.style.color = "red";
-    errorDiv.style.fontWeight = "bold";
-    errorDiv.innerText = "Failed to load test results. Check the console for details.";
-    document.body.prepend(errorDiv);
   }
 }
 

@@ -1,41 +1,65 @@
+// tests/addToCart.spec.js
 import { test } from '@playwright/test';
 import { login } from '../helpers/helperLogin.js';
-import { InventoryPage } from '../pages/InventoryPage';
+import { InventoryPage } from '../pages/InventoryPage.js';
+import { CartPage } from '../pages/CartPage.js';
+import { CheckoutPage } from '../pages/CheckoutPage.js';
+import { CheckoutOverviewPage } from '../pages/CheckoutOverviewPage.js';
+import { CheckoutCompletePage } from '../pages/CheckoutCompletePage.js';
+import { LogoutPage } from '../pages/LogoutPage.js';
 import dotenv from 'dotenv';
-dotenv.config(); // Load variables from .env file
+dotenv.config();
 
 let context;
 let page;
 let inventoryPage;
+let cartPage;
+let checkoutPage;
+let overviewPage;
+let completePage;
+let logoutPage;
 
-test.describe.serial('Add Product to Cart Page', () => {
-
+test.describe.serial('Full Add to Cart and Checkout Flow', () => {
     test.beforeAll(async ({ browser }) => {
-        // Create one context for all tests in this file
         context = await browser.newContext();
-        // Create one shared page
         page = await context.newPage();
-        // Login ONCE
         await login(page);
-        // Initialize page objects
+
         inventoryPage = new InventoryPage(page);
+        cartPage = new CartPage(page);
+        checkoutPage = new CheckoutPage(page);
+        overviewPage = new CheckoutOverviewPage(page);
+        completePage = new CheckoutCompletePage(page);
+        logoutPage = new LogoutPage(page);
     });
 
-    test('Add product to cart and verify count in cart', async () => {
-        // Step 2: Add a product to cart (by ID)
+    test('Add products to cart and verify count', async () => {
         await inventoryPage.addProductToCartById('sauce-labs-backpack');
-        // Wait 3 seconds to see the page
-        await page.waitForTimeout(1000);
-        // Step 3: Verify cart count increased
         await inventoryPage.verifyProductAddedToCart('1');
+        await inventoryPage.addProductToCartById('sauce-labs-bike-light');
+        await inventoryPage.verifyProductAddedToCart('2');
     });
 
-    test('Add second product to cart', async () => {
-        await inventoryPage.addProductToCartById('sauce-labs-bike-light');
-        // Wait 3 seconds to see the page
-        await page.waitForTimeout(1000);
-        // Step 3: Verify cart count increased
-        await inventoryPage.verifyProductAddedToCart('2');
+    test('Go to cart and verify items', async () => {
+        await inventoryPage.goToCart();
+        await cartPage.verifyItems(['Sauce Labs Backpack', 'Sauce Labs Bike Light']);
+    });
+
+    test('Remove first product and verify remaining items', async () => {
+        await cartPage.removeItem('Sauce Labs Backpack');
+        await cartPage.verifyItems(['Sauce Labs Bike Light']);
+    });
+
+    test('Proceed to checkout', async () => {
+        await cartPage.clickCheckout();
+        await checkoutPage.enterCheckoutInfo('Srishti', 'N', '12345');
+        await overviewPage.verifyItems(['Sauce Labs Bike Light']);
+        await overviewPage.finishCheckout();
+        await completePage.verifyOrderComplete();
+    });
+
+    test('Logout', async () => {
+        await logoutPage.logout();
     });
 
     test.afterAll(async () => {

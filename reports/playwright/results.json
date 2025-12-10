@@ -110,7 +110,7 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 646,
+                      "duration": 95,
                       "errors": [],
                       "stdout": [
                         {
@@ -122,7 +122,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:53.772Z",
+                      "startTime": "2025-12-10T12:30:37.124Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -151,12 +151,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 45,
+                      "duration": 77,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:56.614Z",
+                      "startTime": "2025-12-10T12:30:39.901Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -185,12 +185,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 22,
+                      "duration": 27,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:56.664Z",
+                      "startTime": "2025-12-10T12:30:40.008Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -219,12 +219,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 119,
+                      "duration": 152,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:56.692Z",
+                      "startTime": "2025-12-10T12:30:40.044Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -253,12 +253,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 852,
+                      "duration": 865,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:56.816Z",
+                      "startTime": "2025-12-10T12:30:40.202Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -284,10 +284,10 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 773,
+                      "duration": 180,
                       "errors": [],
                       "stdout": [
                         {
@@ -299,7 +299,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:53.771Z",
+                      "startTime": "2025-12-10T12:30:40.434Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -325,15 +325,15 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 88,
+                      "duration": 154,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:56.209Z",
+                      "startTime": "2025-12-10T12:30:41.704Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -359,15 +359,15 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 59,
+                      "duration": 71,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:56.305Z",
+                      "startTime": "2025-12-10T12:30:41.875Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -393,15 +393,15 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 220,
+                      "duration": 350,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:56.371Z",
+                      "startTime": "2025-12-10T12:30:41.960Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -427,15 +427,15 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1034,
+                      "duration": 1055,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:56.597Z",
+                      "startTime": "2025-12-10T12:30:42.319Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -446,6 +446,159 @@
               "id": "097d650e0876af54edcd-c6a35d0facae52c65830",
               "file": "addToCart.spec.js",
               "line": 61,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "addToCartNegative.spec.js",
+      "file": "addToCartNegative.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Add to Cart Negative Scenarios",
+          "file": "addToCartNegative.spec.js",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Remove item not in cart",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 13,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T12:30:37.125Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9a6966ff6f7e0fbc318a-47a52f0a2f40c2d7493f",
+              "file": "addToCartNegative.spec.js",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "Cart shows empty after removing all items",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 187,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T12:30:37.120Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9a6966ff6f7e0fbc318a-3bcde996b85fa0fa373b",
+              "file": "addToCartNegative.spec.js",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "Remove item not in cart",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 10,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T12:30:40.525Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9a6966ff6f7e0fbc318a-2c99e77d01e6bd308e88",
+              "file": "addToCartNegative.spec.js",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "Cart shows empty after removing all items",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 181,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T12:30:41.000Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9a6966ff6f7e0fbc318a-e0099fd439a02c3d2cbb",
+              "file": "addToCartNegative.spec.js",
+              "line": 29,
               "column": 9
             }
           ]
@@ -478,15 +631,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 26,
+                      "duration": 38,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:53.772Z",
+                      "startTime": "2025-12-10T12:30:37.121Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -512,15 +665,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 1178,
+                      "duration": 1163,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:53.769Z",
+                      "startTime": "2025-12-10T12:30:37.120Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -546,15 +699,15 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 4,
-                      "parallelIndex": 4,
+                      "workerIndex": 9,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 42,
+                      "duration": 32,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:53.769Z",
+                      "startTime": "2025-12-10T12:30:41.081Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -580,15 +733,15 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 5,
-                      "parallelIndex": 5,
+                      "workerIndex": 10,
+                      "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 1320,
+                      "duration": 1211,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-10T04:27:53.775Z",
+                      "startTime": "2025-12-10T12:30:41.516Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -604,13 +757,234 @@
           ]
         }
       ]
+    },
+    {
+      "title": "loginNegative.spec.js",
+      "file": "loginNegative.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Login Negative Scenarios",
+          "file": "loginNegative.spec.js",
+          "line": 13,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Login with invalid credentials",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 142,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T12:30:37.120Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d1c180336564ec728fbe-86083c485af38df95181",
+              "file": "loginNegative.spec.js",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "Login with empty username",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 77,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T12:30:39.789Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d1c180336564ec728fbe-f6078c424809476ab8bb",
+              "file": "loginNegative.spec.js",
+              "line": 27,
+              "column": 9
+            },
+            {
+              "title": "Login with empty password",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 68,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T12:30:39.889Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d1c180336564ec728fbe-d73d952f67af3244297e",
+              "file": "loginNegative.spec.js",
+              "line": 32,
+              "column": 9
+            },
+            {
+              "title": "Login with invalid credentials",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 97,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T12:30:41.920Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d1c180336564ec728fbe-79c17f15e454598a6d4b",
+              "file": "loginNegative.spec.js",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "Login with empty username",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 151,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T12:30:41.650Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d1c180336564ec728fbe-940caf728460c81647a9",
+              "file": "loginNegative.spec.js",
+              "line": 27,
+              "column": 9
+            },
+            {
+              "title": "Login with empty password",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 95,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T12:30:41.941Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d1c180336564ec728fbe-0d5fcbb1ab27de790884",
+              "file": "loginNegative.spec.js",
+              "line": 32,
+              "column": 9
+            }
+          ]
+        }
+      ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-12-10T04:27:53.376Z",
-    "duration": 4404.552,
-    "expected": 14,
+    "startTime": "2025-12-10T12:30:36.740Z",
+    "duration": 6793.078,
+    "expected": 24,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

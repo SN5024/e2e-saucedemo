@@ -7,10 +7,16 @@ export class LogoutPage {
     }
 
     async logout() {
+        // Open the menu
         await this.menuButton.click();
-        await Promise.all([
-            this.page.waitForURL('https://www.saucedemo.com/'),
-            this.logoutLink.click()
-        ]);
+
+        // Wait for logout link to be visible
+        await this.logoutLink.waitFor({ state: 'visible' });
+
+        // Click logout
+        await this.logoutLink.click();
+
+        // Wait for the login page URL
+        await this.page.waitForURL('https://www.saucedemo.com/');
     }
 }

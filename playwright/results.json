@@ -89,13 +89,13 @@
       "specs": [],
       "suites": [
         {
-          "title": "Add Product to Cart Page",
+          "title": "Full Add to Cart and Checkout Flow",
           "file": "addToCart.spec.js",
-          "line": 11,
+          "line": 22,
           "column": 15,
           "specs": [
             {
-              "title": "Add product to cart and verify count in cart",
+              "title": "Add products to cart and verify count",
               "ok": true,
               "tags": [],
               "tests": [
@@ -110,16 +110,19 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1021,
+                      "duration": 646,
                       "errors": [],
                       "stdout": [
                         {
                           "text": "Clicking: [data-test=\"add-to-cart-sauce-labs-backpack\"]\n"
+                        },
+                        {
+                          "text": "Clicking: [data-test=\"add-to-cart-sauce-labs-bike-light\"]\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-09T22:57:48.727Z",
+                      "startTime": "2025-12-10T04:27:53.772Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -127,13 +130,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "097d650e0876af54edcd-13855de74f4328142e8d",
+              "id": "097d650e0876af54edcd-802a361120a31050c5c6",
               "file": "addToCart.spec.js",
-              "line": 24,
+              "line": 36,
               "column": 9
             },
             {
-              "title": "Add second product to cart",
+              "title": "Go to cart and verify items",
               "ok": true,
               "tags": [],
               "tests": [
@@ -148,16 +151,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1022,
+                      "duration": 45,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Clicking: [data-test=\"add-to-cart-sauce-labs-bike-light\"]\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-09T22:57:51.183Z",
+                      "startTime": "2025-12-10T04:27:56.614Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -165,13 +164,115 @@
                   "status": "expected"
                 }
               ],
-              "id": "097d650e0876af54edcd-dca256de6a5031e34e2a",
+              "id": "097d650e0876af54edcd-5ef3c309c2ce079571a2",
               "file": "addToCart.spec.js",
-              "line": 33,
+              "line": 43,
               "column": 9
             },
             {
-              "title": "Add product to cart and verify count in cart",
+              "title": "Remove first product and verify remaining items",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 22,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T04:27:56.664Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "097d650e0876af54edcd-e99d0be45f15b6267a43",
+              "file": "addToCart.spec.js",
+              "line": 48,
+              "column": 9
+            },
+            {
+              "title": "Proceed to checkout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 119,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T04:27:56.692Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "097d650e0876af54edcd-7a20ffdf46d52756aea4",
+              "file": "addToCart.spec.js",
+              "line": 53,
+              "column": 9
+            },
+            {
+              "title": "Logout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 852,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T04:27:56.816Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "097d650e0876af54edcd-a54d0bc831bb4eb62c3c",
+              "file": "addToCart.spec.js",
+              "line": 61,
+              "column": 9
+            },
+            {
+              "title": "Add products to cart and verify count",
               "ok": true,
               "tags": [],
               "tests": [
@@ -186,16 +287,19 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 1066,
+                      "duration": 773,
                       "errors": [],
                       "stdout": [
                         {
                           "text": "Clicking: [data-test=\"add-to-cart-sauce-labs-backpack\"]\n"
+                        },
+                        {
+                          "text": "Clicking: [data-test=\"add-to-cart-sauce-labs-bike-light\"]\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-09T22:57:48.732Z",
+                      "startTime": "2025-12-10T04:27:53.771Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -203,13 +307,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "097d650e0876af54edcd-2d77a83d4e53c2138131",
+              "id": "097d650e0876af54edcd-0137674768b104fa2bea",
               "file": "addToCart.spec.js",
-              "line": 24,
+              "line": 36,
               "column": 9
             },
             {
-              "title": "Add second product to cart",
+              "title": "Go to cart and verify items",
               "ok": true,
               "tags": [],
               "tests": [
@@ -224,16 +328,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 1052,
+                      "duration": 88,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Clicking: [data-test=\"add-to-cart-sauce-labs-bike-light\"]\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-09T22:57:51.160Z",
+                      "startTime": "2025-12-10T04:27:56.209Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -241,9 +341,111 @@
                   "status": "expected"
                 }
               ],
-              "id": "097d650e0876af54edcd-1c1e6c27cf250f7b7bbe",
+              "id": "097d650e0876af54edcd-7c6fb32397ffa47e3976",
               "file": "addToCart.spec.js",
-              "line": 33,
+              "line": 43,
+              "column": 9
+            },
+            {
+              "title": "Remove first product and verify remaining items",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 59,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T04:27:56.305Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "097d650e0876af54edcd-20cfbed935d92325e76f",
+              "file": "addToCart.spec.js",
+              "line": 48,
+              "column": 9
+            },
+            {
+              "title": "Proceed to checkout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 220,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T04:27:56.371Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "097d650e0876af54edcd-fa6d1865c093e0b4363f",
+              "file": "addToCart.spec.js",
+              "line": 53,
+              "column": 9
+            },
+            {
+              "title": "Logout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1034,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-12-10T04:27:56.597Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "097d650e0876af54edcd-c6a35d0facae52c65830",
+              "file": "addToCart.spec.js",
+              "line": 61,
               "column": 9
             }
           ]
@@ -279,12 +481,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 29,
+                      "duration": 26,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-09T22:57:48.729Z",
+                      "startTime": "2025-12-10T04:27:53.772Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -313,12 +515,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 1125,
+                      "duration": 1178,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-09T22:57:48.729Z",
+                      "startTime": "2025-12-10T04:27:53.769Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -347,12 +549,12 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 61,
+                      "duration": 42,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-09T22:57:48.731Z",
+                      "startTime": "2025-12-10T04:27:53.769Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -381,12 +583,12 @@
                       "workerIndex": 5,
                       "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 1256,
+                      "duration": 1320,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-12-09T22:57:48.728Z",
+                      "startTime": "2025-12-10T04:27:53.775Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -406,9 +608,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-12-09T22:57:48.309Z",
-    "duration": 4027.6299999999997,
-    "expected": 8,
+    "startTime": "2025-12-10T04:27:53.376Z",
+    "duration": 4404.552,
+    "expected": 14,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

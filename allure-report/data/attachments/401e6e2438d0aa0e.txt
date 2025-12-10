@@ -1,1 +1,2 @@
+Clicking: [data-test="add-to-cart-sauce-labs-backpack"]
 Clicking: [data-test="add-to-cart-sauce-labs-bike-light"]

@@ -61,6 +61,7 @@ Tested user flows include:
 * GitHub Actions run tests on every push or pull request to main
 * Generates HTML reports and Allure reports
 * Supports custom reporting for advanced metrics
+* Supports parallel execution for cross brower testing
 * Sample GitHub Actions workflow:
 
 yaml
@@ -126,11 +127,11 @@ Environment variables are consumed inside tests and page objects for flexibility
 
 ## 📊 What This Project Demonstrates
 
-* Realistic E2E automation flows used in QA/SDET roles
-* Strong understanding of test design, stability, and maintainability
-* Hands-on Playwright experience beyond basic examples
-* CI/CD integration with GitHub Actions
-* Advanced reporting (HTML, custom, Allure)
+* Realistic scalable Playwright framework designed for maintainability, reuse, and real-world QA/SDET use cases
+* A fully automated end-to-end test suite covering critical user workflows from login to checkout
+* Parallel test execution across multiple browsers to ensure cross-browser reliability
+* Seamless CI/CD integration with GitHub Actions
+* Advanced  and comprehensive reporting (HTML, custom, Allure)
 * A portfolio-ready automation framework suitable for professional review
 
 ---

@@ -1,120 +1,110 @@
-# SauceDemo E2E Automation Framework (Playwright)
+# E2E Automation Framework (Playwright)
+
+![GitHub Actions](https://img.shields.io/github/workflow/status/SN5024/load-testing/E2E%20Playwright%20Tests?label=CI%2FCD&logo=github)  
+![Allure Report](https://img.shields.io/badge/Allure-Report-blue)  
+![npm](https://img.shields.io/badge/npm-vX.X.X-orange?logo=npm)  
+
+---
 
 ## 📌 Project Overview
-
-This repository contains a **production-style end-to-end UI automation framework** built using **Playwright** for the SauceDemo application. The project is designed to demonstrate **real-world QA/SDET practices**, including scalable test design, Page Object Model (POM), environment-based configuration, and comprehensive positive and negative test coverage.
-
-This project reflects hands-on upskilling in modern automation practices and mirrors how UI automation is implemented and maintained in professional QA teams.
+This repository contains a **production-style end-to-end UI automation framework** built using Playwright for the **SauceDemo** application. It demonstrates real-world QA/SDET practices, including **scalable test design, Page Object Model (POM), environment-based configuration, and comprehensive positive & negative test coverage**.  
 
 ---
 
 ## 🧪 Application Under Test
+**SauceDemo** – a widely used demo e-commerce application for testing automation skills.  
 
-**SauceDemo** – a widely used demo e-commerce application for testing automation skills.
-
-Tested user flows include:
-
-* Authentication (positive & negative)
-* Inventory validation
-* Add-to-cart and cart management
-* Checkout flow (overview → completion)
-* Logout functionality
+**Tested user flows:**
+- Authentication (positive & negative)
+- Inventory validation
+- Add-to-cart and cart management
+- Checkout flow (overview → completion)
+- Logout functionality  
 
 ---
 
 ## 🏗️ Framework Structure
-
-```
+```text
 ├── pages/                    # Page Objects (UI locators & actions)
-│   ├── LoginPage.js
-│   ├── InventoryPage.js
-│   ├── CartPage.js
-│   ├── CheckoutPage.js
-│   ├── CheckoutOverviewPage.js
-│   ├── CheckoutCompletePage.js
-│   └── LogoutPage.js
-│
 ├── tests/                    # Test specifications
-│   ├── login.spec.js
-│   ├── loginNegative.spec.js
-│   ├── addToCart.spec.js
-│   └── addToCartNegative.spec.js
-│
-├── .env                      # Environment-specific configuration
+├── .env                      # Environment variables
 ├── playwright.config.js      # Playwright configuration
+├── reports/                  # Test execution reports (HTML & Allure)
 └── README.md
-```
 
----
+🧠 Design Principles
+Page Object Model (POM) for clean separation of test logic and UI interactions
 
-## 🧠 Design Principles & Practices
+Environment variables (.env) for credentials and URLs
 
-* **Page Object Model (POM)** for clean separation of test logic and UI interactions
-* **Environment variables (.env)** for credentials and URLs (no hardcoding)
-* **Explicit, condition-based waits** instead of static timeouts
-* **Positive and negative test coverage** to validate functional and error scenarios
-* **Readable, maintainable test structure** aligned with real QA automation standards
+Explicit, condition-based waits instead of static timeouts
 
----
+Positive and negative test coverage
 
-## ▶️ How to Run Tests
+Readable, maintainable test structure aligned with real QA automation standards
 
-### Install dependencies
+⚡ CI/CD Integration
+GitHub Actions run tests on every push or pull request to main
 
-```bash
+Generates HTML reports and Allure reports
+
+Supports custom reporting for advanced metrics
+
+Sample GitHub Actions workflow:
+
+yaml
+Copy code
+name: E2E Playwright Tests
+on:
+  push: { branches: [main] }
+  pull_request: { branches: [main] }
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with: { node-version: '20' }
+      - run: npm install
+      - run: npx playwright install
+      - run: npx playwright test --reporter=html,allure-playwright
+      - run: npx allure generate reports/allure-results --clean -o reports/allure-report
+
+▶️ How to Run Tests Locally
+bash
+Copy code
 npm install
-```
-
-### Install Playwright browsers
-
-```bash
 npx playwright install
-```
-
-### Execute all tests
-
-```bash
 npx playwright test
-```
-
-### Run tests in headed mode
-
-```bash
 npx playwright test --headed
-```
+npx playwright test --reporter=html,allure-playwright
+npx allure generate reports/allure-results --clean -o reports/allure-report
 
----
+🔐 Environment Configuration
+Create a .env file:
 
-## 🔐 Environment Configuration
-
-Create a `.env` file at the root level:
-
-```
+env
+Copy code
 BASE_URL=https://www.saucedemo.com/
 SAUCE_USERNAME=standard_user
 SAUCE_PASSWORD=secret_sauce
-```
 
-Environment variables are consumed inside tests and page objects for flexibility across environments.
+📊 What This Project Demonstrates
+Realistic E2E automation flows
 
----
+Strong test design and maintainability
 
-## 📊 What This Project Demonstrates
+Hands-on Playwright experience
 
-* Realistic E2E automation flows used in QA/SDET roles
-* Strong understanding of test design, stability, and maintainability
-* Hands-on Playwright experience beyond basic examples
-* A portfolio-ready automation framework suitable for professional review
+CI/CD integration with GitHub Actions
 
----
+Advanced reporting (HTML, custom, Allure)
 
-## 👤 Author
+Portfolio-ready QA/SDET showcase
 
-**S N**
+👤 Author
+S N
 
-
----
-
-## 📄 Notes
-
-This repository is intentionally built as a **complete, finished automation project**, not a tutorial or proof-of-concept, and is intended to represent real-world QA automation practices.
+📄 Notes
+This repository is built as a complete, professional automation project, not a tutorial, demonstrating real-world QA automation practices.

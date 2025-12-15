@@ -1,4 +1,4 @@
-# SauceDemo E2E Automation Framework (Playwright)
+# E2E Automation Framework (Playwright)
 
 ## 📌 Project Overview
 

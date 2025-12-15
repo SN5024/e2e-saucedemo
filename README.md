@@ -1,18 +1,8 @@
 # E2E Automation Framework (Playwright)
-<<<<<<< HEAD
-
-![GitHub Actions](https://img.shields.io/github/workflow/status/SN5024/load-testing/E2E%20Playwright%20Tests?label=CI%2FCD&logo=github)  
-![Allure Report](https://img.shields.io/badge/Allure-Report-blue)  
-![npm](https://img.shields.io/badge/npm-vX.X.X-orange?logo=npm)  
-
----
-=======
->>>>>>> e3d16fd115a64f9994ea0edf4cb6f300b1fbbdc1
 
 ## 📌 Project Overview
 This repository contains a **production-style end-to-end UI automation framework** built using Playwright for the **SauceDemo** application. It demonstrates real-world QA/SDET practices, including **scalable test design, Page Object Model (POM), environment-based configuration, and comprehensive positive & negative test coverage**.  
 
----
 
 ## 🧪 Application Under Test
 **SauceDemo** – a widely used demo e-commerce application for testing automation skills.  
@@ -24,7 +14,6 @@ This repository contains a **production-style end-to-end UI automation framework
 - Checkout flow (overview → completion)
 - Logout functionality  
 
----
 
 ## 🏗️ Framework Structure
 ```text
@@ -109,14 +98,7 @@ Portfolio-ready QA/SDET showcase
 👤 Author
 S N
 
-<<<<<<< HEAD
-📄 Notes
-This repository is built as a complete, professional automation project, not a tutorial, demonstrating real-world QA automation practices.
-=======
-
----
 
 ## 📄 Notes
 
 This repository is intentionally built as a **complete, finished automation project**, not a tutorial or proof-of-concept, and is intended to represent real-world QA automation practices.
->>>>>>> e3d16fd115a64f9994ea0edf4cb6f300b1fbbdc1

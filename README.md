@@ -1,4 +1,4 @@
-# E2E Automation Framework (Playwright)
+# E2E Automation Framework
 
 ## 📌 Project Overview
 
